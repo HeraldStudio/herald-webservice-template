@@ -1,15 +1,15 @@
 {
-  "name": "example",
-  "version": "0.1.0",
-  "description": "apiDoc basic example",
-  "title": "Custom apiDoc browser title",
-  "url": "https://api.github.com/v1",
+  "name": "herald-webservice-template",
+  "version": "1.0.0",
+  "description": "信使计划 Webservice 模板项目",
+  "title": "信使计划 Webservice 模板项目",
+  "url": "https://heraldstudio.github.io/herald-webservice-template/",
   "sampleUrl": false,
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2020-02-21T10:49:41.103Z",
+    "time": "2020-02-21T10:55:23.508Z",
     "url": "http://apidocjs.com",
     "version": "0.20.0"
   }
