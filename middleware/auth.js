@@ -75,6 +75,18 @@ const hash = value => {
 
 module.exports = async (ctx, next) => {
 
+  /**
+   * @api {POST} /auth
+   * @apiGroup Auth
+   * @apiName 认证登录接口
+   * @apiDescription
+   * 普遍情况下对接统一身份认证登录接口
+   * 如果是自维护用户登录需要修改逻辑
+   * 
+   * @apiParam {String} ticket CAS 认证 ST-Ticket
+   * @apiParam {String} service 前端发起 CAS 认证的 Service
+   * @apiParam {String} platform 当前登录平台的标识符
+   */
   // 对于 auth 路由的请求，直接截获，不交给 kf-router
   if (ctx.path === '/auth') {
 

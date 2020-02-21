@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "yarn && cross-env NODE_ENV=development nodemon --tls-min-v1.0 app.js --mode=development --port=3000",
-    "start": "yarn && cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=production nodemon --tls-min-v1.0 app.js --mode=production --port=3000"
+    "start": "yarn && cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=production nodemon --tls-min-v1.0 app.js --mode=production --port=3000",
+    "doc": "apidoc -i ./middleware/ -i ./routes/ -o ./docs"
   },
   "repository": {
     "type": "git",
@@ -40,5 +41,8 @@
     "tough-cookie": "^3.0.1",
     "uuid": "^3.4.0",
     "vm": "^0.1.0"
+  },
+  "devDependencies": {
+    "apidoc": "^0.20.0"
   }
 }
