@@ -1,7 +1,7 @@
 define({
-  "name": "herald-webservice-template",
+  "name": "信使计划 Webservice 模板项目",
   "version": "1.0.0",
-  "description": "信使计划 Webservice 模板项目",
+  "description": "herald-webservice-template",
   "title": "信使计划 Webservice 模板项目",
   "url": "",
   "sampleUrl": false,
@@ -9,7 +9,7 @@ define({
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2020-02-22T03:53:47.257Z",
+    "time": "2020-02-22T13:56:03.682Z",
     "url": "http://apidocjs.com",
     "version": "0.20.0"
   }

@@ -76,9 +76,9 @@ const hash = value => {
 module.exports = async (ctx, next) => {
 
   /**
-   * @api {POST} /auth
-   * @apiGroup Auth
-   * @apiName 认证登录接口
+   * @api {POST} /auth 认证登录
+   * @apiGroup 认证登录
+   * @apiName Auth
    * @apiDescription
    * 普遍情况下对接统一身份认证登录接口
    * 如果是自维护用户登录需要修改逻辑

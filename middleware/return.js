@@ -17,6 +17,7 @@ module.exports = async (ctx, next) => {
     } else if (typeof e === 'number') {
       ctx.status = e
     } else if (typeof e === 'string') {
+      ctx.error = 'BAD_REQUEST'
       ctx.body = e
       ctx.logMsg = e
       ctx.status = 400
@@ -28,7 +29,9 @@ module.exports = async (ctx, next) => {
     } else {
       console.trace(e)
       ctx.logMsg = e.name + ':' + e.message
-      ctx.status = 400
+      ctx.error = 'INTERNAL_SERVER_ERROR'
+      ctx.body = `服务器内部错误（${e}）`
+      ctx.status = 500
     }
   }
 
@@ -81,8 +84,6 @@ module.exports = async (ctx, next) => {
       } else if (ctx.status === 502) {
         json.error = ''
         json.reason = '服务器维护'
-      } else if (ctx.status === 503) {
-        json.reason = '学校相关服务出现故障'
       } else {
         json.error = 'BAD_REQUEST'
         json.reason = '请求出错'
@@ -90,6 +91,11 @@ module.exports = async (ctx, next) => {
     }
   }
 
+  /**
+   * @apiDefine Error401
+   * @apiError UNAUTHORIZED 需要登录-接口需要登录才能调用
+   * @apiError TOKEN_EXPIRED 身份凭证失效-请求携带了 Token 但是 Token 无效
+   */
   if (ctx.wx) {
     if (!ctx.wechatTest) ctx.body = 'success'
     ctx.status = 200
