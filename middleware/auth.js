@@ -86,6 +86,10 @@ module.exports = async (ctx, next) => {
    * @apiParam {String} ticket CAS 认证 ST-Ticket
    * @apiParam {String} service 前端发起 CAS 认证的 Service
    * @apiParam {String} platform 当前登录平台的标识符
+   * 
+   * @apiSuccess {String} result result 为 token 字符串
+   * 
+   * @apiError 
    */
   // 对于 auth 路由的请求，直接截获，不交给 kf-router
   if (ctx.path === '/auth') {

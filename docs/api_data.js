@@ -33,6 +33,30 @@ define({ "api": [
         ]
       }
     },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "AUTH_PARAMS",
+            "description": "<p>“缺少统一身份认证参数”-认证过程中传递参数不同</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "CAS_ERROR",
+            "description": "<p>统一身份认证过程出错-在从 CAS 系统获取用户信息的过程中出错</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "IDENTITY_CHECKED_FAILED",
+            "description": "<p>身份完整性校验失败-从数据库不能找到用户信息</p>"
+          }
+        ]
+      }
+    },
     "version": "0.0.0",
     "filename": "middleware/auth.js",
     "groupTitle": "Auth"
