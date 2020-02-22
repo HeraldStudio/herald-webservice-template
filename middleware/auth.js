@@ -87,9 +87,10 @@ module.exports = async (ctx, next) => {
    * @apiParam {String} service 前端发起 CAS 认证的 Service
    * @apiParam {String} platform 当前登录平台的标识符
    * 
-   * @apiSuccess {String} result result 为 token 字符串
+   * @apiSuccess {String} - result 为 token 字符串
    * 
-   * @apiError 
+   * @apiError (Error 500) CAS_ERROR 统一身份认证过程出错
+   * @apiError (Error 500) IDENTITY_INVALID 身份完整性校验失败
    */
   // 对于 auth 路由的请求，直接截获，不交给 kf-router
   if (ctx.path === '/auth') {
@@ -104,13 +105,13 @@ module.exports = async (ctx, next) => {
 
     if (typeof ticket !== 'string'
       || typeof service !== 'string') {
-      throw '缺少统一身份认证参数'
+      throw 405
     }
 
     if (!platform) {
-      throw '缺少参数 platform: 必须指定平台名'
+      throw 405
     } else if (!/^[0-9a-z-]+$/.test(platform)) {
-      throw 'platform 只能由小写字母、数字和中划线组成' // 为了美观（通神nb
+      throw 405
     }
 
     // 该服务接入两种验证服务，由于公众号入口可能性大，先尝试cas-we-can验证
@@ -137,7 +138,11 @@ module.exports = async (ctx, next) => {
     } catch (e) {
       console.log(e)
       console.log(casWeCanRes, idsRes)
-      throw '统一身份认证过程出错'
+      throw {
+        status: 500,
+        error:'CAS_ERROR',
+        reason:'统一身份认证过程出错'
+      }
     }
 
     // 从数据库查找学号、姓名
@@ -164,7 +169,11 @@ module.exports = async (ctx, next) => {
     }
 
     if (!name) {
-      throw '身份完整性校验失败'
+      throw {
+        status: 500,
+        error:'IDENTITY_INVALID',
+        reason:'身份完整性校验失败'
+      }
     }
 
     // 生成 32 字节 token 转为十六进制，及其哈希值

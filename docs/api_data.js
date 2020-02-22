@@ -33,26 +33,33 @@ define({ "api": [
         ]
       }
     },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "-",
+            "description": "<p>result 为 token 字符串</p>"
+          }
+        ]
+      }
+    },
     "error": {
       "fields": {
-        "Error 4xx": [
+        "Error 500": [
           {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "AUTH_PARAMS",
-            "description": "<p>“缺少统一身份认证参数”-认证过程中传递参数不同</p>"
-          },
-          {
-            "group": "Error 4xx",
+            "group": "Error 500",
             "optional": false,
             "field": "CAS_ERROR",
-            "description": "<p>统一身份认证过程出错-在从 CAS 系统获取用户信息的过程中出错</p>"
+            "description": "<p>统一身份认证过程出错</p>"
           },
           {
-            "group": "Error 4xx",
+            "group": "Error 500",
             "optional": false,
-            "field": "IDENTITY_CHECKED_FAILED",
-            "description": "<p>身份完整性校验失败-从数据库不能找到用户信息</p>"
+            "field": "IDENTITY_INVALID",
+            "description": "<p>身份完整性校验失败</p>"
           }
         ]
       }
